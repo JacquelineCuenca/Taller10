@@ -54,20 +54,15 @@ public class OperationsTest {
      * Test of Solve method, of class Operations.
      */
     @Test
-    @DisplayName("Suma de 2 y 13 es 19")
+    @DisplayName("Suma de 2 y 13 es 15")
     public void testSolveAdition() {
         System.out.println("Solve");
         String formula = "2+13";
 
-        try {
-            String result = Operations.Solve(formula);
-            System.out.println("Resultado: " + result);
-
-            assertEquals("2+13=19", result, "Resultado incorrecto");
-        } catch (Exception e) {
-
-            System.out.println("Solve() lanzó una excepción inesperada: " + e.getMessage());
-        }
+        assertEquals("2+13=15", Operations.Solve(formula));
+        assertThrows(NumberFormatException.class, () -> {
+            Operations.Solve(formula);
+        }, "Se esperaba 2+13=15");
     }
 
     @Test
@@ -76,15 +71,10 @@ public class OperationsTest {
         System.out.println("Solve");
 
         String formula = "5-3";
-        try {
-            String result = Operations.Solve(formula);
-            System.out.println("Resultado: " + result);
-
-            assertEquals("5-3=2", result, "Resultado incorrecto");
-        } catch (Exception e) {
-
-            System.out.println("Solve() lanzó una excepción inesperada: " + e.getMessage());
-        }
+        assertEquals("5-3=2", Operations.Solve(formula));
+        assertThrows(NumberFormatException.class, () -> {
+            Operations.Solve(formula);
+        }, "Se esperaba 5-3=2");
 
     }
 
