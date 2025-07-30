@@ -17,22 +17,22 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author CltControl
  */
 public class OperationsTest {
-    
+
     public OperationsTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
     }
-    
+
     @BeforeEach
     public void setUp() {
     }
-    
+
     @AfterEach
     public void tearDown() {
     }
@@ -57,18 +57,39 @@ public class OperationsTest {
     @DisplayName("Suma de 2 y 13 es 19")
     public void testSolveAdition() {
         System.out.println("Solve");
-        String formula= "2+13";
+        String formula = "2+13";
         assertEquals("2+13=19", Operations.Solve(formula));
-        
+
     }
 
     @Test
     @DisplayName("Resta de 5 - 3 deberia salir 2")
     public void testSolveDivision() {
         System.out.println("Solve");
-        String formula= "5-3";
+        String formula = "5-3";
         assertEquals("5-3=2", Operations.Solve(formula));
-        
+
+    }
+
+    @Test
+    @DisplayName("Multiplicación (3 * 4) que debe dar 12")
+    public void testSolveMultiplication() {
+        String formula = "3*4";
+        String expResult = "3*4=12";
+        String result = Operations.Solve(formula);
+        assertEquals(expResult, result, "La multiplicación de 3*4 debería ser 12.");
     }
     
+
+    @Test
+    @DisplayName("División por cero: '4 / 0' debe lanzar una ArithmeticException")
+    public void testSolveDivisionByZero() {
+        System.out.println("Solve");
+
+        String formula = "4/0";
+        assertThrows(ArithmeticException.class, () -> {
+            Operations.Solve(formula);  // Se espera que esta línea lance la excepción
+        }, "La división por cero debería lanzar una excepción ArithmeticException.");
+    }
+
 }
