@@ -7,6 +7,7 @@ package com.mycompany.taller10_junit5;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -53,14 +54,21 @@ public class OperationsTest {
      * Test of Solve method, of class Operations.
      */
     @Test
-    public void testSolve() {
+    @DisplayName("Suma de 2 y 13 es 19")
+    public void testSolveAdition() {
         System.out.println("Solve");
-        String formula = "";
-        String expResult = "";
-        String result = Operations.Solve(formula);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String formula= "2+13";
+        assertEquals("2+13=19", Operations.Solve(formula));
+        
+    }
+
+    @Test
+    @DisplayName("Resta de 5 - 3 deberia salir 2")
+    public void testSolveDivision() {
+        System.out.println("Solve");
+        String formula= "5-3";
+        assertEquals("5-3=2", Operations.Solve(formula));
+        
     }
     
 }
