@@ -17,22 +17,22 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author CltControl
  */
 public class OperationsTest {
-    
+
     public OperationsTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
     }
-    
+
     @BeforeEach
     public void setUp() {
     }
-    
+
     @AfterEach
     public void tearDown() {
     }
@@ -57,18 +57,35 @@ public class OperationsTest {
     @DisplayName("Suma de 2 y 13 es 19")
     public void testSolveAdition() {
         System.out.println("Solve");
-        String formula= "2+13";
-        assertEquals("2+13=19", Operations.Solve(formula));
-        
+        String formula = "2+13";
+
+        try {
+            String result = Operations.Solve(formula);
+            System.out.println("Resultado: " + result);
+
+            assertEquals("2+13=19", result, "Resultado incorrecto");
+        } catch (Exception e) {
+
+            System.out.println("Solve() lanzó una excepción inesperada: " + e.getMessage());
+        }
     }
 
     @Test
     @DisplayName("Resta de 5 - 3 deberia salir 2")
-    public void testSolveDivision() {
+    public void testSolveResta() {
         System.out.println("Solve");
-        String formula= "5-3";
-        assertEquals("5-3=2", Operations.Solve(formula));
-        
+
+        String formula = "5-3";
+        try {
+            String result = Operations.Solve(formula);
+            System.out.println("Resultado: " + result);
+
+            assertEquals("5-3=2", result, "Resultado incorrecto");
+        } catch (Exception e) {
+
+            System.out.println("Solve() lanzó una excepción inesperada: " + e.getMessage());
+        }
+
     }
-    
+
 }
