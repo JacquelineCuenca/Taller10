@@ -67,15 +67,35 @@ public class OperationsTest {
 
     @Test
     @DisplayName("Resta de 5 - 3 deberia salir 2")
-    public void testSolveResta() {
+    public void testSolveDivision() {
         System.out.println("Solve");
-
         String formula = "5-3";
         assertEquals("5-3=2", Operations.Solve(formula));
         assertThrows(NumberFormatException.class, () -> {
             Operations.Solve(formula);
         }, "Se esperaba 5-3=2");
 
+    }
+
+    @Test
+    @DisplayName("Multiplicación (3 * 4) que debe dar 12")
+    public void testSolveMultiplication() {
+        String formula = "3*4";
+        String expResult = "3*4=12";
+        String result = Operations.Solve(formula);
+        assertEquals(expResult, result, "La multiplicación de 3*4 debería ser 12.");
+    }
+    
+
+    @Test
+    @DisplayName("División por cero: '4 / 0' debe lanzar una ArithmeticException")
+    public void testSolveDivisionByZero() {
+        System.out.println("Solve");
+
+        String formula = "4/0";
+        assertThrows(ArithmeticException.class, () -> {
+            Operations.Solve(formula);  // Se espera que esta línea lance la excepción
+        }, "La división por cero debería lanzar una excepción ArithmeticException.");
     }
 
 }
