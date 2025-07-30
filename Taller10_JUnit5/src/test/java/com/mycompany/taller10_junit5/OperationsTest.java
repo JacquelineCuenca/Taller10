@@ -98,4 +98,16 @@ public class OperationsTest {
         }, "La división por cero debería lanzar una excepción ArithmeticException.");
     }
 
+
+    @Test
+    @DisplayName("La cadena es null")
+    public void testSolveNull(){
+        String formula= null;
+
+        assertNull(Operations.Solve(formula));
+
+        assertThrows(NullPointerException.class, ()->{
+            Operations.Solve(formula);
+        }, "No se permite cadena nula");
+    }
 }
