@@ -40,16 +40,37 @@ public class OperationsTest {
     /**
      * Test of MakeFormula method, of class Operations.
      */
+ 
     @Test
-    public void testMakeFormula() {
-        System.out.println("MakeFormula");
-        String expResult = "";
-        String result = Operations.MakeFormula();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    @DisplayName("MakeFormula no debe retornar null")
+    public void testMakeFormula_NoNull() {
+        String formula = Operations.MakeFormula();
+        assertNotNull(formula, "La fórmula no debe ser null");
     }
 
+    @Test
+    @DisplayName("MakeFormula no debe retornar una cadena vacía")
+    public void testMakeFormula_NotEmpty() {
+        String formula = Operations.MakeFormula();
+        assertFalse(formula.isEmpty(), "La fórmula no debe estar vacía");
+    }
+
+    @Test
+    @DisplayName("MakeFormula debe contener al menos un operador matemático")
+    public void testMakeFormula_ContieneOperator() {
+        String formula = Operations.MakeFormula();
+        assertTrue(formula.matches(".*[\\+\\-\\*/].*"),
+                   "La fórmula debe contener al menos un operador válido");
+    }
+
+    @Test
+    @DisplayName("MakeFormula debe comenzar con un número y no con un operador")
+    public void testMakeFormula_comienzaSinNumero() {
+        String formula = Operations.MakeFormula();
+        assertTrue(Character.isDigit(formula.charAt(0)),
+                   "La fórmula debe comenzar con un número");
+    }
+    
     /**
      * Test of Solve method, of class Operations.
      */
