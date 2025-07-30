@@ -40,7 +40,7 @@ public class OperationsTest {
     /**
      * Test of MakeFormula method, of class Operations.
      */
- 
+
     @Test
     @DisplayName("MakeFormula no debe retornar null")
     public void testMakeFormula_NoNull() {
@@ -60,7 +60,7 @@ public class OperationsTest {
     public void testMakeFormula_ContieneOperator() {
         String formula = Operations.MakeFormula();
         assertTrue(formula.matches(".*[\\+\\-\\*/].*"),
-                   "La fórmula debe contener al menos un operador válido");
+                "La fórmula debe contener al menos un operador válido");
     }
 
     @Test
@@ -68,9 +68,9 @@ public class OperationsTest {
     public void testMakeFormula_comienzaSinNumero() {
         String formula = Operations.MakeFormula();
         assertTrue(Character.isDigit(formula.charAt(0)),
-                   "La fórmula debe comenzar con un número");
+                "La fórmula debe comenzar con un número");
     }
-    
+
     /**
      * Test of Solve method, of class Operations.
      */
@@ -106,7 +106,6 @@ public class OperationsTest {
         String result = Operations.Solve(formula);
         assertEquals(expResult, result, "La multiplicación de 3*4 debería ser 12.");
     }
-    
 
     @Test
     @DisplayName("División por cero: '4 / 0' debe lanzar una ArithmeticException")
@@ -115,20 +114,16 @@ public class OperationsTest {
 
         String formula = "4/0";
         assertThrows(ArithmeticException.class, () -> {
-            Operations.Solve(formula);  // Se espera que esta línea lance la excepción
+            Operations.Solve(formula); // Se espera que esta línea lance la excepción
         }, "La división por cero debería lanzar una excepción ArithmeticException.");
     }
 
-
     @Test
-    @DisplayName("La cadena es null")
-    public void testSolveNull(){
-        String formula= null;
-
-        assertNull(Operations.Solve(formula));
-
-        assertThrows(NullPointerException.class, ()->{
-            Operations.Solve(formula);
-        }, "No se permite cadena nula");
+    @DisplayName("La cadena no debe ser null")
+    public void testSolveNoNull() {
+        
+        assertThrows(NullPointerException.class, () -> {
+            Operations.Solve(null);
+        }, "Se esperaba una NullPointerException al pasar null");
     }
 }
